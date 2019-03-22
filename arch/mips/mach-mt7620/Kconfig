@@ -41,6 +41,14 @@ config BOARD_LINKIT_SMART_7688
 	  ethernet ports, 1 USB port, 1 UART, GPIO buttons and LEDs, and
 	  a MT7688 (PCIe).
 
+config BOARD_ITRON_HAB01
+	bool "Itron HAB01"
+	depends on SOC_MT7620
+	select SUPPORTS_BOOT_RAM
+	help
+	  ITRON HAB01 boards have a MT7688 SoC with 64 MiB of RAM
+	  and 16 MiB of flash (SPI).
+
 endchoice
 
 choice
