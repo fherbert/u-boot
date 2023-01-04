@@ -1,0 +1,12 @@
+if BOARD_ITRON_HAB01
+
+config SYS_BOARD
+	default "hab01"
+
+config SYS_VENDOR
+	default "itron"
+
+config SYS_CONFIG_NAME
+	default "itron-hab01"
+
+endif
