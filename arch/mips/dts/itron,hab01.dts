@@ -1,0 +1,165 @@
+// SPDX-License-Identifier: GPL-2.0
+/dts-v1/;
+
+#include "mt7628a.dtsi"
+#include <dt-bindings/gpio/gpio.h>
+
+/ {
+	compatible = "itron,hab01", "ralink,mt7628a-soc";
+	model = "ITron HAB01";
+
+	aliases {
+		serial0 = &uart0;
+		spi0 = &spi0;
+	};
+
+    leds {
+        compatible = "gpio-leds";
+        relay1 {
+            label = "relay1";
+            gpios = <&gpio0 23 GPIO_ACTIVE_HIGH>;
+            default-state = "off";
+        };
+        relay2 {
+            label = "relay2";
+            gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>;
+            default-state = "off";
+        };
+        relay3 {
+            label = "relay3";
+            gpios = <&gpio0 25 GPIO_ACTIVE_HIGH>;
+            default-state = "off";
+        };
+        relay4 {
+            label = "relay4";
+            gpios = <&gpio0 24 GPIO_ACTIVE_HIGH>;
+            default-state = "off";
+        };
+        relay5 {
+            label = "relay5";
+            gpios = <&gpio0 17 GPIO_ACTIVE_HIGH>;
+            default-state = "off";
+        };
+        relay6 {
+            label = "relay6";
+            gpios = <&gpio0 16 GPIO_ACTIVE_HIGH>;
+            default-state = "off";
+        };
+        relay7 {
+            label = "relay7";
+            gpios = <&gpio0 15 GPIO_ACTIVE_HIGH>;
+            default-state = "off";
+        };
+        relay8 {
+            label = "relay8";
+            gpios = <&gpio0 14 GPIO_ACTIVE_HIGH>;
+            default-state = "off";
+        };
+
+        wifi {
+            label = "itron:orange:wifi";
+            gpios = <&gpio1 12 GPIO_ACTIVE_LOW>;
+            default-state = "off";
+        };
+
+
+        j2-26 {
+            label = "j2-26";
+            gpios = <&gpio0 26 GPIO_ACTIVE_HIGH>;
+            default-state = "off";
+        };
+        j2-27 {
+            label = "j2-27";
+            gpios = <&gpio0 27 GPIO_ACTIVE_HIGH>;
+            default-state = "off";
+        };
+        j2-28 {
+            label = "j2-28";
+            gpios = <&gpio0 28 GPIO_ACTIVE_HIGH>;
+            default-state = "off";
+        };
+        j2-29 {
+            label = "j2-29";
+            gpios = <&gpio0 29 GPIO_ACTIVE_HIGH>;
+            default-state = "off";
+        };
+ 
+
+    };
+
+    keys {
+        compatible = "gpio-keys";
+
+        wps {
+            label = "reset";
+            gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
+            linux,code = <0x211>;
+        };
+    };
+
+	chosen {
+		stdout-path = &uart0;
+	};
+};
+
+&state_default {
+    gpio {
+        groups = "gpio";
+        function = "gpio";
+    };
+
+    perst {
+        groups = "perst";
+        function = "gpio";
+    };
+
+
+    refclk {
+        groups = "refclk";
+        function = "gpio";
+    };
+
+    i2s {
+        groups = "i2s";
+        function = "gpio";
+    };
+
+    spis {
+        groups = "spis";
+        function = "gpio";
+    };
+
+    wled_an {
+        groups = "wled_an";
+        function = "gpio";
+    };
+
+    wdt {
+        groups = "wdt";
+        function = "gpio";
+    };
+};
+
+&uart0 {
+	status = "okay";
+};
+
+&spi0 {
+	status = "okay";
+	num-cs = <2>;
+
+	spi-flash@0 {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		compatible = "jedec,spi-nor";
+		spi-max-frequency = <25000000>;
+		reg = <0>;
+	};
+};
+
+&eth {
+	pinctrl-names = "default";
+	pinctrl-0 = <&ephy_iot_mode>;
+	mediatek,poll-link-phy = <0>;
+};
+
