@@ -30,11 +30,11 @@
 #define CONFIG_EXTRA_ENV_SETTINGS \
     "bootmenu_default=0\0" \
     "bootmenu_0=Run from flash=bootm 0xbc050000 \0" \
-    "bootmenu_1=Flash u-boot from tftp=askenv serverip TFTP Server IP: && askenv ipaddr IP Address: && askenv file_name File name: && tftpboot 0x82000000 ${file_name} && run writeflash\0" \
-    "bootmenu_2=Flash u-boot from USB=setenv bootfile u-boot-with-spl.bin && usb start && load usb 0 && run writeflash\0" \
-    "bootmenu_3=Flash OS from USB=setenv bootfile itronhab01.img && setenv flashoffset 0x50000 && usb start && load usb 0 && run writeflash\0" \
-    "writeflash=sf probe && sf update ${fileaddr} ${flashoffset} 0x${filesize} && reset\0" \
-    "tf=setenv serverip 10.0.0.5 && setenv ipaddr 10.0.0.76 && tftpboot 0x82000000 u-boot-with-spl.bin && run writeflash\0" \
+    "bootmenu_1=Flash u-boot from tftp=askenv serverip TFTP Server IP: && askenv ipaddr IP Address: && askenv file_name File name: && ledblink start && tftpboot 0x82000000 ${file_name} && run writeflash\0" \
+    "bootmenu_2=Flash u-boot from USB=setenv bootfile u-boot-with-spl.bin && ledblink start && usb start && load usb 0 && run writeflash\0" \
+    "bootmenu_3=Flash OS from USB=setenv bootfile openwrt.bin && setenv flashoffset 0x50000 && ledblink start && usb start && load usb 0 && run writeflash\0" \
+    "writeflash=sf probe && sf update ${fileaddr} ${flashoffset} 0x${filesize} && ledblink stop && reset\0" \
+    "tf=setenv serverip 10.0.0.5 && setenv ipaddr 10.0.0.76 && ledblink start && tftpboot 0x82000000 u-boot-with-spl.bin && run writeflash\0" \
     "flashoffset=0\0" \
     "preboot=if button reset; then " \
       "led itron:orange:wifi on;" \
@@ -49,4 +49,3 @@
     "fi;\0" \
 
 #endif /* __CONFIG_ITRON_HAB01_H */
-
