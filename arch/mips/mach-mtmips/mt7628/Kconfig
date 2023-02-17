@@ -35,6 +35,12 @@ config BOARD_VOCORE2
 	  VoCore VoCore2 board has a MT7628 SoC with 128 MiB of RAM
 	  and 16 MiB of flash (SPI).
 
+config BOARD_ITRON_HAB01
+	bool "Itron HAB01"
+	help
+	  The ITron HAB01 has a MT7688, with 16 MiB of flash (SPI) and 128 MiB of
+	  RAM. It is an IP Home automation bridge with 3xIR, RS232, and 8x relays.
+
 endchoice
 
 config SPL_UART2_SPIS_PINMUX
@@ -55,5 +61,6 @@ config SYS_CONFIG_NAME
 source "board/gardena/smart-gateway-mt7688/Kconfig"
 source "board/seeed/linkit-smart-7688/Kconfig"
 source "board/vocore/vocore2/Kconfig"
+source "board/itron/hab01/Kconfig"
 
 endif
